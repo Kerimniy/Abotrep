@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bot Check</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer onerror="turnstileLoadError()"></script>
+
+    
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            color: #ffffff;
+            padding: 0; 
+            margin: 0; 
+            background: linear-gradient(135deg, #1e1e1e, #2c2c2c); 
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05); 
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); 
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 12px; 
+            background: linear-gradient(90deg, #4a4a4a, #6a6a6a); 
+            border-radius: 10px;
+            outline: none;
+            transition: background 0.3s ease;
+            --thumb-color: #ffffff; 
+        }
+
+        .slider::-webkit-slider-runnable-track {
+            height: 12px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #4a4a4a, #6a6a6a);
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 40px; 
+            height: 40px;
+            background: var(--thumb-color);
+            border: 4px solid #007bff; 
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 2px 10px rgba(0, 123, 255, 0.5); 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: translateY(-50%) scale(1.1); 
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.7);
+        }
+
+        .slider::-moz-range-track {
+            height: 12px;
+            background: linear-gradient(90deg, #4a4a4a, #6a6a6a);
+            border-radius: 10px;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 40px;
+            height: 40px;
+            background: #ffffff;
+            border: 4px solid #007bff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 123, 255, 0.5);
+        }
+
+        #req {
+            font-size: 32px;
+            font-weight: bold;
+            color: #007bff; 
+            margin-bottom: 20px;
+            background: rgba(0, 123, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        @keyframes testAnim {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            p {
+                font-size: 14px;
+            }
+            #req {
+                font-size: 28px;
+            }
+        }
+</style>
+
+
+
+</head>
+
+<body>
+
+<div class="container">
+        <h1 id="title">Verify You're Human</h1>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAACDy6dQ7VZSMdsKR" data-callback="onSuccess"></div></div>
+    </div>
+
+
+</body>
+<script>
+
+const fullURL = window.location.protocol + '//' + window.location.host;
+
+
+function onSuccess(token) {
+
+    let res = {"token":token}
+
+    fetch(`${fullURL}/abotrep/verify-token`, {method: 'POST',headers: {'Content-Type': 'application/json'},  body: JSON.stringify(res),})
+        .then(response => {
+          if (response.ok) {
+            location.reload()
+          }
+          else{
+           
+          }
+          
+        })
+    
+   
+
+}
+
+function setCookie(key, value, hours) {
+    const d = new Date();
+    d.setTime(d.getTime() + (hours * 60 * 60 * 1000));
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; ${expires}; path=/; SameSite=Lax`;
+}
+
+
+function turnstileLoadError(){
+   
+}
+
+setTimeout(() => {
+    if (!window.turnstile) {
+       turnstileLoadError()
+    }
+}, 7000);
+</script>
+
+</html>

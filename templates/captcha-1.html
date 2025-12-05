@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="description" content="Captcha">
+
+<style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            color: #ffffff;
+            padding: 0; 
+            margin: 0; 
+            background: linear-gradient(135deg, #1e1e1e, #2c2c2c); 
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05); 
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); 
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 12px; 
+            background: linear-gradient(90deg, #4a4a4a, #6a6a6a); 
+            border-radius: 10px;
+            outline: none;
+            transition: background 0.3s ease;
+            --thumb-color: #ffffff; 
+        }
+
+        .slider::-webkit-slider-runnable-track {
+            height: 12px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #4a4a4a, #6a6a6a);
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 40px; 
+            height: 40px;
+            background: var(--thumb-color);
+            border: 4px solid #007bff; 
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 2px 10px rgba(0, 123, 255, 0.5); 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: translateY(-50%) scale(1.1); 
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.7);
+        }
+
+        .slider::-moz-range-track {
+            height: 12px;
+            background: linear-gradient(90deg, #4a4a4a, #6a6a6a);
+            border-radius: 10px;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 40px;
+            height: 40px;
+            background: #ffffff;
+            border: 4px solid #007bff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 123, 255, 0.5);
+        }
+
+        #req {
+            font-size: 32px;
+            font-weight: bold;
+            color: #007bff; 
+            margin-bottom: 20px;
+            background: rgba(0, 123, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        @keyframes testAnim {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            p {
+                font-size: 14px;
+            }
+            #req {
+                font-size: 28px;
+            }
+        }
+</style>
+
+
+
+</head>
+
+<body>
+<div id="h" style="top: 0; left: 0;">
+    <div style="left: 0%; position: absolute; top: 50%;opacity: 0; width: 100vw; overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 75%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 25%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 5%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 10%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 30%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 80%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 90%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 20%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 40%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="left: 0%; position: absolute; top: 7%;opacity: 0; width: 100vw;overflow: hidden; height: 5px;"></div>
+    <div style="position: absolute; top: 0; left: 7%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 10%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 20%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 30%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 40%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 50%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 60%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 70%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 80%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 90%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 85%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+    <div style="position: absolute; top: 0; left: 15%;opacity: 0; width: 5px;overflow: hidden; height: 100vh;"></div>
+
+</div>
+<div class="container">
+        <h1 id="title">Verify You're Human</h1>
+        <p id="description">Slide the bar to match the number below as closely as possible. Move naturally for best results.</p> 
+        <div id="req">REQ</div>
+        <div class="slider-container">
+            <input type="range" min="0" max="1000" value="50" id="range" class="slider">
+        </div>
+    </div>
+
+
+
+
+</body>
+
+<script>
+
+
+let scrollbar = document.getElementById("range");
+let req = document.getElementById("req");
+let hovers = document.getElementById("h");
+let scrolltimes = []
+let points=[]
+let animtest = false
+let h_count = 0
+let delaytest = false
+let description = document.getElementById("description")
+let title = document.getElementById("title")
+const isTouch = matchMedia("(pointer: coarse)").matches;
+
+let bot_desc = "Failed. Move mouse/touch. Move pointer slowly"
+let nocookie_desc = "Enable cookies in your browser"
+let nocookie_title = "Cookies requered"
+
+const loaded_at = performance.now()
+
+if (!navigator.cookieEnabled){
+    title.innerText = nocookie_title
+    description.innerText = nocookie_desc
+    req.style.display = "none"
+    scrollbar.style.display = "none"
+}
+
+for (let el of hovers.children){
+    el.addEventListener("mouseenter",()=>{
+        h_count++
+    });
+}
+
+scrollbar.addEventListener("mouseenter",()=>{
+        h_count++
+    });
+
+function genReq(){
+
+    let val = (Math.round(Math.random()*10)*10)
+    let val2 = (Math.round(Math.random()*10)*10)
+    while (Math.abs(val2-val)<=35){
+        val2 = (Math.round(Math.random()*10)*10)
+    }
+
+    req.innerHTML = val;
+    scrollbar.value = val2*10
+    
+}
+
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + ";";
+}
+
+scrollbar.addEventListener("input", () => {
+    
+    scrolltimes.push(performance.now())
+
+});
+
+scrollbar.addEventListener("change", () => {
+   
+    const isClose = Math.abs(scrollbar.value/10 - parseInt(req.innerHTML)) <= 15;
+
+    let lastDiff = scrolltimes[1] - scrolltimes[0]; 
+
+    let timediff = 0;
+    for (let i = 2; i < scrolltimes.length; i++) { 
+        const currentDiff = scrolltimes[i] - scrolltimes[i - 1];
+        if (lastDiff !== currentDiff) {
+            timediff++;
+        }
+        lastDiff = currentDiff;
+    }
+    
+    let _isHuman = false
+    if (!isTouch){
+        _isHuman = isHuman(isClose,performance.now() - loaded_at>600,timediff)
+    }
+    else{
+        _isHuman = isHumanM(isClose,performance.now() - loaded_at>600)
+    }
+    
+    console.log(velocityVariation(scrolltimes));
+
+    if (_isHuman){
+        location.reload()
+        setCookie("checked","1",3)
+    }
+    else{
+        description.innerText = bot_desc
+    }
+    
+    scrolltimes = [];
+});
+
+function velocityVariation(times) {
+    if (times.length < 3) return 0;
+
+    let diffs = [];
+    for (let i = 1; i < times.length; i++) {
+        diffs.push(times[i] - times[i - 1]);
+    }
+
+    const avg = diffs.reduce((a,b)=>a+b,0)/diffs.length;
+    const varsum = diffs.reduce((a,b)=>a + (b-avg)*(b-avg), 0);
+
+    const std = Math.sqrt(varsum / diffs.length);
+
+    return std / avg; 
+}
+
+function hasRandomPauses(times) {
+    let pauses = 0;
+
+    for (let i = 1; i < times.length; i++) {
+        const dt = times[i] - times[i - 1];
+        if (dt > 70) pauses++;
+    }
+
+    return pauses > 0; 
+}
+function detectTouchStop(points) {
+    if (points.length < 4) return false;
+
+    const vLast = Math.hypot(
+        points.at(-1).x - points.at(-2).x,
+        points.at(-1).y - points.at(-2).y
+    );
+
+    const vPrev = Math.hypot(
+        points.at(-2).x - points.at(-3).x,
+        points.at(-2).y - points.at(-3).y
+    );
+
+    return vPrev > vLast ;
+}
+
+function isHumanM(isClose, notFast) {
+    if (!isClose || !notFast) return false;
+
+    return velocityVariation(scrolltimes)+hasRandomPauses(scrolltimes)+detectTouchStop(points)>1
+
+}
+
+function isHuman(isClose, notFast, timediff) {
+    if (!isClose || !notFast) return false;
+
+    const jitter = detectMicroJitter();
+    const dirs = checkPoints();
+    if (!dirs && jitter < 2) return false;
+
+    const jerk = analyzeJerk(scrolltimes);
+    let arr=[]
+    for (let i=0; i<points.length;i++){
+        arr.push(points[i].t)
+    }
+    const jerkP = analyzeJerk(arr);
+    if (jerk < 0.1&&jerkP < 0.1) return false; 
+
+    if (timediff < 2) return false;
+
+    
+
+    let score = 0;
+    if (animtest) score++;
+    if (delaytest) score++;
+    if (h_count < 2) return false;
+
+    return true;
+}
+
+function checkPoints(){
+    if (points.length < 6) { 
+        return false;
+    }
+    let last_x_d = null;
+    let last_y_d = null;
+    let cd = 0;
+    let max_speed = 0;
+
+    for (let i = 1; i < points.length; i++) {
+        const dx = points[i].x - points[i - 1].x;
+        const dy = points[i].y - points[i - 1].y;
+        const dt = points[i].t - points[i - 1].t || 0.001;
+
+        const speed_x = Math.abs(dx / dt);
+        const speed_y = Math.abs(dy / dt);
+        max_speed = Math.max(max_speed, Math.sqrt(speed_x*speed_x+ speed_y*speed_y));
+
+        if (dx !== 0) {
+            const dir_x = dx > 0 ? 1 : -1;
+            if (last_x_d === null) {
+                last_x_d = dir_x;
+            } else if (dir_x !== last_x_d) {
+                cd++;
+                last_x_d = dir_x;
+            }
+        }
+
+        if (dy !== 0) {
+            const dir_y = dy > 0 ? 1 : -1;
+            if (last_y_d === null) {
+                last_y_d = dir_y;
+            } else if (dir_y !== last_y_d) {
+                cd++;
+                last_y_d = dir_y;
+            }
+        }
+    }
+   return (cd >= 3 && max_speed < 100);
+}
+
+function analyzeJerk(times) {
+    if (times.length < 4) return 0;
+
+    let diffs = [];
+    for (let i = 1; i < times.length; i++) {
+        diffs.push(times[i] - times[i - 1]);
+    }
+
+    let jerk = [];
+    for (let i = 1; i < diffs.length; i++) {
+        jerk.push(Math.abs(diffs[i] - diffs[i - 1]));
+    }
+
+    jerk.sort((a, b) => a - b);
+    return jerk[Math.floor(jerk.length / 2)];
+}
+
+
+genReq()
+function detectMicroJitter() {
+    if (points.length < 6) return false;
+    let jitter = 0;
+
+    for (let i = 1; i < points.length; i++) {
+        const dx = Math.abs(points[i].x - points[i - 1].x);
+        const dy = Math.abs(points[i].y - points[i - 1].y);
+
+        if (dx < 2 && dy < 2) jitter++;  
+    }
+
+    return jitter;
+}
+
+
+async function microDelayTest() {
+    let delays = [];
+    for (let i = 0; i < 50; i++) {
+        const t = performance.now();
+        await Promise.resolve();
+        delays.push(performance.now() - t);
+    }
+    const uniqueDelays = new Set(delays);
+    delaytest = uniqueDelays.size > 1; 
+}
+
+function cssTimingTest() {
+    return new Promise(resolve => {
+        const el = document.createElement('div');
+        el.style.animation = "testAnim 300ms linear";
+        document.body.appendChild(el);
+        const t = performance.now();
+        el.addEventListener('animationend', () => {
+            const timing = performance.now() - t;
+            resolve(timing);
+            el.remove();
+            animtest = Math.abs(timing - 300) > 15; 
+        });
+    });
+}
+
+document.body.addEventListener('pointermove', (e) => {
+
+  const now = performance.now();
+  const last = points[points.length - 1];
+  
+  if (!last || now - last.t > 8) {
+    points.push({ x: e.clientX, y: e.clientY, t: now });
+  }
+
+});
+
+async function runTests() {
+    await microDelayTest();
+    const timing = await cssTimingTest();
+
+}
+//runTests();
+
+
+</script>
+
+</html>

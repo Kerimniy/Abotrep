@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>502 Bad Gateway</title>
+<meta name="description" content="502 Bad Gateway">
+<link rel="stylesheet" href="abotrep/static/error-style.css">
+
+
+
+</head>
+
+<body>
+<header>
+    <h1>502 Bad Gateway</h1>
+    <hr>
+</header>
+
+<div class="content">
+    <div class="error-details">
+        <div class="error-code">502</div>
+        <div class="error-message">Bad Gateway Error</div>
+        <div class="suggestion">
+            The server encountered a temporary error and could not complete your request.<br>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p id="f">Server: example.com • Request ID: 5XG-82B</p>
+</footer>
+</body>
+<script>
+
+let footer = document.getElementById("f")
+
+footer.innerText = `Server: ${window.location.host} • Time: ${(new Date).toISOString()}`
+
+
+</script>
+</html>

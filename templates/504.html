@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>504 Gateway Timeout</title>
+<meta name="description" content="502 Bad Gateway">
+<link rel="stylesheet" href="abotrep/static/error-style.css">
+
+
+
+
+</head>
+
+<body>
+<header>
+    <h1>504 Gateway Timeout</h1>
+    <hr>
+</header>
+
+<div class="content">
+    <div class="error-details">
+        <div class="error-code">504</div>
+        <div class="error-message">Gateway Timeout Error</div>
+        <div class="suggestion">
+            The server encountered a temporary error and could not complete your request.<br>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p id="f">Server: example.com • Request ID: 5XG-82B</p>
+</footer>
+</body>
+<script>
+
+let footer = document.getElementById("f")
+
+footer.innerText = `Server: ${window.location.host} • Time: ${(new Date).toISOString()}`
+
+
+</script>
+</html>
