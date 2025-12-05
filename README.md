@@ -1,4 +1,4 @@
-<img src="https://github.com/Kerimniy/Abotrep/blob/main/abotreplogo.png" style="width: 30%">
+<img src="https://github.com/Kerimniy/Abotrep/blob/main/abotreplogo.png" style="width: 10%">
 <p>На русском тута <a href="https://github.com/Kerimniy/Abotrep/blob/main/README-RU.md">тык</a></p>
 
 # Abotrep
