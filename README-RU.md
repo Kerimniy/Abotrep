@@ -1,3 +1,6 @@
+<img src="https://github.com/Kerimniy/Abotrep/blob/main/abotreplogo.png" style="width: 10%">
+<p>In english <a href="https://github.com/Kerimniy/Abotrep/blob/main/README.md">click</a></p>
+
 # Abotrep
 
 Лёгкий reverse-proxy на **Axum** (Rust), который добавляет защиту от краулеров и простых ботов и перегрузок:
