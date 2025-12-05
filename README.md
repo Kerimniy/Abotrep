@@ -1,3 +1,6 @@
+<img src="https://github.com/Kerimniy/Abotrep/blob/main/abotreplogo.png" style="width: 30%">
+<p>На русском тута <a href="https://github.com/Kerimniy/Abotrep/blob/main/README-RU.md">тык</a></p>
+
 # Abotrep
 
 Lightweight reverse proxy built on **Axum** (Rust) that protects your backend from crawlers, simple bots, and overload:
